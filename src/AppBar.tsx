@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Button } from "@mui/material";
+import { Grid, Button, Typography } from "@mui/material";
 import SearchBar from "./Common/Search";
 
 type Props = {};
@@ -11,9 +11,13 @@ function AppBar({}: Props) {
       sx={{
         padding: "1rem",
         borderBottom: "1px solid",
-        justifyContent: "flex-end",
+        justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
+      <Grid item>
+        <Typography variant="h4">GovData</Typography>
+      </Grid>
       <Grid item>
         <Button variant="contained">Login</Button>
       </Grid>

@@ -20,7 +20,6 @@ function App() {
   return (
     <Stack className="App">
       <AppBar />
-      <FilterBar />
       {loading ? <CircularProgress /> : <Dashboard />}
     </Stack>
   );

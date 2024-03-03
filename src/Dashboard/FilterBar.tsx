@@ -6,7 +6,7 @@ type Props = {};
 
 function FilterBar({}: Props) {
   return (
-    <Grid container sx={{ padding: "1rem", borderBottom: "1px solid" }}>
+    <Grid container sx={{ paddingBottom: "1rem" }}>
       <Grid item>
         <SearchBar />
       </Grid>
