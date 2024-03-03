@@ -8,7 +8,18 @@ import {
   Grid,
   TextField,
   Button,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Paper,
+  Typography,
 } from "@mui/material";
+import TocIcon from "@mui/icons-material/Toc";
+import BarChartIcon from "@mui/icons-material/BarChart";
 import SearchBar from "./Common/Search";
 import { SearchContext } from "./Providers/SearchProvider";
 import AppBar from "./AppBar";
@@ -17,11 +28,53 @@ import FilterBar from "./Dashboard/FilterBar";
 
 function App() {
   const { loading } = useContext(DataContext);
+  const [tabIndex, setTabIndex] = React.useState(0);
+
   return (
     <Stack className="App">
       <AppBar />
-      {loading ? <CircularProgress /> : <Dashboard />}
+      <Grid container>
+        <Grid item md={2}>
+          <Drawer {...{ tabIndex, setTabIndex }} />
+        </Grid>
+        <Grid item md={10}>
+          {loading ? <CircularProgress /> : <Dashboard {...{ tabIndex }} />}
+        </Grid>
+      </Grid>
     </Stack>
+  );
+}
+
+function Drawer({
+  tabIndex,
+  setTabIndex,
+}: {
+  tabIndex: number;
+  setTabIndex: (index: number) => void;
+}) {
+  return (
+    <Paper>
+      <List>
+        {["Table", "Charts"].map((text, index) => {
+          const icon = {
+            0: <TocIcon />,
+            1: <BarChartIcon />,
+          }[index];
+
+          return (
+            <ListItem key={text} disablePadding>
+              <ListItemButton
+                selected={tabIndex === index}
+                onClick={() => setTabIndex(index)}
+              >
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
+      </List>
+    </Paper>
   );
 }
 
