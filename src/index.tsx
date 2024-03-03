@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import DataProvider from "./Providers/DataProvider";
 import SearchProvider from "./Providers/SearchProvider";
+import { FilterProvider } from "./Providers/FilterProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,7 +14,9 @@ root.render(
   <React.StrictMode>
     <DataProvider>
       <SearchProvider>
-        <App />
+        <FilterProvider>
+          <App />
+        </FilterProvider>
       </SearchProvider>
     </DataProvider>
   </React.StrictMode>
