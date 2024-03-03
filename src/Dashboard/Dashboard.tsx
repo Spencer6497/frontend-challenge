@@ -12,6 +12,7 @@ import { DataContext } from "../Providers/DataProvider";
 import { SearchContext } from "../Providers/SearchProvider";
 import FilterBar from "./FilterBar";
 import Chart from "react-google-charts";
+import { SliderFilterContext } from "../Providers/SliderFilterProvider";
 
 type Props = { tabIndex: number };
 
@@ -32,14 +33,24 @@ function Dashboard({ tabIndex }: Props) {
 function DataTable() {
   const { data, loading } = useContext(DataContext);
   const { searchTerm } = useContext(SearchContext);
+  const { sliderRange } = useContext(SliderFilterContext);
   const filteredData = useMemo(
     () =>
-      data.filter((data) =>
-        data.department
-          .toLocaleLowerCase()
-          .includes(searchTerm.toLocaleLowerCase())
-      ),
-    [data, searchTerm]
+      data
+        .filter((data) =>
+          data.department
+            .toLocaleLowerCase()
+            .includes(searchTerm.toLocaleLowerCase())
+        )
+        .filter((data) => {
+          if (sliderRange) {
+            return (
+              data.datasets >= sliderRange[0] && data.datasets <= sliderRange[1]
+            );
+          }
+          return true;
+        }),
+    [data, searchTerm, sliderRange]
   );
 
   return (

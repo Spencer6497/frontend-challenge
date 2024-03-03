@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import DataProvider from "./Providers/DataProvider";
 import SearchProvider from "./Providers/SearchProvider";
-import { FilterProvider } from "./Providers/FilterProvider";
+import { SliderFilterProvider } from "./Providers/SliderFilterProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,9 +14,9 @@ root.render(
   <React.StrictMode>
     <DataProvider>
       <SearchProvider>
-        <FilterProvider>
+        <SliderFilterProvider>
           <App />
-        </FilterProvider>
+        </SliderFilterProvider>
       </SearchProvider>
     </DataProvider>
   </React.StrictMode>
