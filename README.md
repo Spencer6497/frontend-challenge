@@ -1,3 +1,11 @@
+# Project Layout
+
+The sample json is served directly from the `public` folder, and consumed within `DataProvider.tsx`.
+
+Top-level app state, such as data handling, search query handling, and filter handling are all found within the numerous `Providers` under the titular folder and consumed via `useContext` hooks.
+
+I've tried to be as granular as possible with the components I created, and the component structure should be fairly easy to follow.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
