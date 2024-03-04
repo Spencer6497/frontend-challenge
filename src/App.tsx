@@ -32,13 +32,22 @@ function App() {
 
   return (
     <Stack className="App">
-      <AppBar />
+      <AppBar />d
       <Grid container>
         <Grid item md={2}>
           <Drawer {...{ tabIndex, setTabIndex }} />
         </Grid>
-        <Grid item md={10}>
-          {loading ? <CircularProgress /> : <Dashboard {...{ tabIndex }} />}
+        <Grid
+          item
+          md={10}
+          aria-describedby="loading-spinner"
+          aria-busy={loading}
+        >
+          {loading ? (
+            <CircularProgress id="loading-spinner" />
+          ) : (
+            <Dashboard {...{ tabIndex }} />
+          )}
         </Grid>
       </Grid>
     </Stack>
