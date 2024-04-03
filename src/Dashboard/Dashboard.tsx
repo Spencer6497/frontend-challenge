@@ -1,12 +1,5 @@
 import React, { useContext, useMemo } from "react";
 import { Grid, Stack, Paper, Container } from "@mui/material";
-import {
-  BarChart,
-  ChartsLegend,
-  PieChart,
-  PiePlot,
-  ResponsiveChartContainer,
-} from "@mui/x-charts";
 import { DataGrid } from "@mui/x-data-grid";
 import { DataContext } from "../Providers/DataProvider";
 import { SearchContext } from "../Providers/SearchProvider";
@@ -43,7 +36,7 @@ function DataTable() {
             .includes(searchTerm.toLocaleLowerCase())
         )
         .filter((data) => {
-          if (sliderRange) {
+          if (sliderRange && sliderRange[0] > 0 && sliderRange[1] > 0) {
             return (
               data.datasets >= sliderRange[0] && data.datasets <= sliderRange[1]
             );
@@ -86,6 +79,7 @@ function DataTable() {
               disableColumnMenu: true,
             },
           ]}
+          style={{ minHeight: 250 }}
           initialState={{
             pagination: { paginationModel: { pageSize: 10 } },
           }}

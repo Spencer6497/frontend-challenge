@@ -1,18 +1,10 @@
 import { Slider, Stack, Typography } from "@mui/material";
 import React, { useContext, useMemo } from "react";
 import { SliderFilterContext } from "../Providers/SliderFilterProvider";
-import { DataContext } from "../Providers/DataProvider";
 
 function DatasetSlider() {
-  const { sliderRange, setSliderRange } = useContext(SliderFilterContext);
-  const { data } = useContext(DataContext);
-  const { min, max } = useMemo(
-    () => ({
-      min: Math.min(...data.map((datum) => datum.datasets)),
-      max: Math.max(...data.map((datum) => datum.datasets)),
-    }),
-    [data]
-  );
+  const { sliderRange, min, max, setSliderRange } =
+    useContext(SliderFilterContext);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setSliderRange(newValue as number[]);

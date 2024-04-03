@@ -32,7 +32,7 @@ function App() {
 
   return (
     <Stack className="App">
-      <AppBar />d
+      <AppBar />
       <Grid container>
         <Grid item md={2}>
           <Drawer {...{ tabIndex, setTabIndex }} />

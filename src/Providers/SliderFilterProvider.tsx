@@ -26,8 +26,8 @@ export const SliderFilterProvider = ({ children }: PropsWithChildren) => {
 
   const { min, max } = useMemo(
     () => ({
-      min: Math.min(...data.map((datum) => datum.datasets)),
-      max: Math.max(...data.map((datum) => datum.datasets)),
+      min: data ? Math.min(...data.map((datum) => datum.datasets)) : -1,
+      max: data ? Math.max(...data.map((datum) => datum.datasets)) : -1,
     }),
     [data]
   );
